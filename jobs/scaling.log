@@ -1,0 +1,34 @@
+rounds= 1 plain            PROVED      0.1s dag=20 tree=4.80e+01 
+rounds= 1 flatten          PROVED      0.0s dag=20 tree=4.80e+01 
+rounds= 1 flatten+opaque   PROVED      0.1s dag=30 tree=4.80e+01 
+rounds= 1 +MBA (1 layer)   PROVED      0.1s dag=42 tree=9.60e+01 
+rounds= 1 +MBA (2 layers)  PROVED     19.3s dag=70 tree=1.10e+03 
+rounds= 2 plain            PROVED      0.0s dag=31 tree=2.42e+02 
+rounds= 2 flatten          PROVED      0.1s dag=31 tree=2.42e+02 
+rounds= 2 flatten+opaque   PROVED      0.1s dag=46 tree=2.42e+02 
+rounds= 2 +MBA (1 layer)   TESTED     20.2s dag=75 tree=8.66e+02 Z3 timeout
+rounds= 2 +MBA (2 layers)  TESTED     20.3s dag=125 tree=1.09e+05 Z3 timeout
+rounds= 4 plain            PROVED      0.1s dag=53 tree=5.17e+03 
+rounds= 4 flatten          PROVED      0.1s dag=53 tree=5.17e+03 
+rounds= 4 flatten+opaque   PROVED      0.1s dag=80 tree=5.17e+03 
+rounds= 4 +MBA (1 layer)   TESTED     20.2s dag=143 tree=6.35e+04 Z3 timeout
+rounds= 4 +MBA (2 layers)  TESTED     20.3s dag=237 tree=1.05e+09 Z3 timeout
+rounds= 8 plain            PROVED      0.1s dag=97 tree=2.24e+06 
+rounds= 8 flatten          PROVED      0.2s dag=97 tree=2.24e+06 
+rounds= 8 flatten+opaque   PROVED      0.2s dag=147 tree=2.24e+06 
+rounds= 8 +MBA (1 layer)   TESTED     20.4s dag=278 tree=3.36e+08 Z3 timeout
+rounds= 8 +MBA (2 layers)  TESTED     20.6s dag=460 tree=9.80e+16 Z3 timeout
+rounds=16 plain            PROVED      0.2s dag=185 tree=4.20e+11 
+rounds=16 flatten          PROVED      0.4s dag=185 tree=4.20e+11 
+rounds=16 flatten+opaque   PROVED      0.5s dag=283 tree=4.20e+11 
+rounds=16 +MBA (1 layer)   TESTED     20.7s dag=550 tree=9.44e+15 Z3 timeout
+rounds=16 +MBA (2 layers)  TESTED     21.1s dag=908 tree=8.52e+32 Z3 timeout
+rounds=32 plain            PROVED      0.4s dag=361 tree=1.48e+22 
+rounds=32 flatten          PROVED      0.7s dag=361 tree=1.48e+22 
+rounds=32 flatten+opaque   PROVED      0.9s dag=554 tree=1.48e+22 
+rounds=32 +MBA (1 layer)   TESTED     21.3s dag=1093 tree=7.43e+30 Z3 timeout
+rounds=32 +MBA (2 layers)  TESTED      2.0s dag=1803 tree=6.44e+64 query too large (1803 DAG nodes > budget 1200)
+Traceback (most recent call last):
+  File "/home/kuldeep/random_gibberish/mitBhackathon/scaling.py", line 42, in <module>
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'

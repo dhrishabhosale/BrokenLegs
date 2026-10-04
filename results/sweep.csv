@@ -1,0 +1,68 @@
+family,label,truly_different,lineage_verdict,lineage_caught,lineage_time,fuzz_300k_caught,fuzz_50M_caught
+const-bitflip,C_S0 bit 1,True,NOT_EQUIVALENT,True,0.41,True,True
+const-bitflip,C_S0 bit 0,True,NOT_EQUIVALENT,True,4.27,True,True
+const-bitflip,C_S0 bit 21,True,NOT_EQUIVALENT,True,1.05,True,True
+const-bitflip,C_T0 bit 9,True,NOT_EQUIVALENT,True,1.57,True,True
+const-bitflip,C_T0 bit 31,True,NOT_EQUIVALENT,True,2.33,True,True
+const-bitflip,C_T0 bit 18,True,NOT_EQUIVALENT,True,0.26,True,True
+const-bitflip,C_K bit 6,True,NOT_EQUIVALENT,True,1.42,True,True
+const-bitflip,C_K bit 24,True,NOT_EQUIVALENT,True,0.25,True,True
+const-bitflip,C_K bit 19,True,NOT_EQUIVALENT,True,4.35,True,True
+const-bitflip,C_M bit 3,True,NOT_EQUIVALENT,True,6.32,True,True
+const-bitflip,C_M bit 1,True,NOT_EQUIVALENT,True,1.03,True,True
+const-bitflip,C_M bit 30,True,NOT_EQUIVALENT,True,2.37,True,True
+rot/shift,ROT=4,True,NOT_EQUIVALENT,True,3.54,True,True
+rot/shift,ROT=6,True,NOT_EQUIVALENT,True,4.3,True,True
+rot/shift,SHR=2,True,NOT_EQUIVALENT,True,1.51,True,True
+rot/shift,SHR=4,True,NOT_EQUIVALENT,True,0.41,True,True
+rounds,7 rounds,True,NOT_EQUIVALENT,True,0.22,True,True
+rounds,9 rounds,True,NOT_EQUIVALENT,True,0.17,True,True
+operator-swap,s^t -> s+t,True,NOT_EQUIVALENT,True,0.37,True,True
+operator-swap,s^t -> s|t,True,NOT_EQUIVALENT,True,0.34,True,True
+operator-swap,t*M^x -> +,True,NOT_EQUIVALENT,True,4.9,True,True
+rare-trigger,2^-8 (a&0xFF)==0x60,True,NOT_EQUIVALENT,True,0.12,True,True
+rare-trigger,2^-8 (a&0xFF)==0xF8,True,NOT_EQUIVALENT,True,0.1,True,True
+rare-trigger,2^-8 (a&0xFF)==0xCA,True,NOT_EQUIVALENT,True,0.08,True,True
+rare-trigger,2^-8 (a&0xFF)==0x1F,True,NOT_EQUIVALENT,True,0.09,True,True
+rare-trigger,2^-8 (a&0xFF)==0xA2,True,NOT_EQUIVALENT,True,0.09,True,True
+rare-trigger,2^-8 (a&0xFF)==0xE0,True,NOT_EQUIVALENT,True,0.09,True,True
+rare-trigger,2^-12 (a&0xFFF)==0xC1B,True,NOT_EQUIVALENT,True,0.1,True,True
+rare-trigger,2^-12 (a&0xFFF)==0x208,True,NOT_EQUIVALENT,True,0.09,True,True
+rare-trigger,2^-12 (a&0xFFF)==0xD3E,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-12 (a&0xFFF)==0x9EA,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-12 (a&0xFFF)==0x82F,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-12 (a&0xFFF)==0xE8,True,NOT_EQUIVALENT,True,0.09,True,True
+rare-trigger,2^-16 (a&0xFFFF)==0xACC1,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-16 (a&0xFFFF)==0x39A6,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-16 (a&0xFFFF)==0x8FA8,True,NOT_EQUIVALENT,True,0.13,True,True
+rare-trigger,2^-16 (a&0xFFFF)==0xD50F,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-16 (a&0xFFFF)==0x7DB2,True,NOT_EQUIVALENT,True,0.13,True,True
+rare-trigger,2^-16 (a&0xFFFF)==0x24D0,True,NOT_EQUIVALENT,True,0.11,True,True
+rare-trigger,2^-20 (a&0xFFFFF)==0x3B283,True,NOT_EQUIVALENT,True,0.09,False,True
+rare-trigger,2^-20 (a&0xFFFFF)==0x4DCD2,True,NOT_EQUIVALENT,True,0.08,True,True
+rare-trigger,2^-20 (a&0xFFFFF)==0x57347,True,NOT_EQUIVALENT,True,0.1,False,True
+rare-trigger,2^-20 (a&0xFFFFF)==0xA504C,True,NOT_EQUIVALENT,True,0.1,True,True
+rare-trigger,2^-20 (a&0xFFFFF)==0x5535C,True,NOT_EQUIVALENT,True,0.1,True,True
+rare-trigger,2^-20 (a&0xFFFFF)==0x92AC,True,NOT_EQUIVALENT,True,0.09,False,True
+rare-trigger,2^-24 (a&0xFFFFFF)==0x40843E,True,NOT_EQUIVALENT,True,0.1,False,True
+rare-trigger,2^-24 (a&0xFFFFFF)==0x2F0F83,True,NOT_EQUIVALENT,True,0.1,False,True
+rare-trigger,2^-24 (a&0xFFFFFF)==0x824A3D,True,NOT_EQUIVALENT,True,0.1,False,True
+rare-trigger,2^-24 (a&0xFFFFFF)==0xE34232,True,NOT_EQUIVALENT,True,0.1,False,True
+rare-trigger,2^-24 (a&0xFFFFFF)==0xB0DCBB,True,NOT_EQUIVALENT,True,0.1,False,True
+rare-trigger,2^-24 (a&0xFFFFFF)==0xBF1DDE,True,NOT_EQUIVALENT,True,0.09,False,True
+rare-trigger,2^-28 (a&0xFFFFFFF)==0x9EEC24,True,NOT_EQUIVALENT,True,0.1,False,False
+rare-trigger,2^-28 (a&0xFFFFFFF)==0x51EC5F4,True,NOT_EQUIVALENT,True,0.08,False,True
+rare-trigger,2^-28 (a&0xFFFFFFF)==0x73AEA6C,True,NOT_EQUIVALENT,True,0.1,False,False
+rare-trigger,2^-28 (a&0xFFFFFFF)==0x5C26DEB,True,NOT_EQUIVALENT,True,0.1,False,False
+rare-trigger,2^-28 (a&0xFFFFFFF)==0x8181E9,True,NOT_EQUIVALENT,True,0.11,False,False
+rare-trigger,2^-28 (a&0xFFFFFFF)==0xDD3B10D,True,NOT_EQUIVALENT,True,0.08,False,False
+rare-trigger,2^-32 (a&0xFFFFFFFF)==0x30A8A98D,True,NOT_EQUIVALENT,True,0.08,False,False
+rare-trigger,2^-32 (a&0xFFFFFFFF)==0x15DD3EEE,True,NOT_EQUIVALENT,True,0.1,False,False
+rare-trigger,2^-32 (a&0xFFFFFFFF)==0xAE373C57,True,NOT_EQUIVALENT,True,0.12,False,False
+rare-trigger,2^-32 (a&0xFFFFFFFF)==0xD36DBB0A,True,NOT_EQUIVALENT,True,0.09,False,False
+rare-trigger,2^-32 (a&0xFFFFFFFF)==0x52D74B4F,True,NOT_EQUIVALENT,True,0.11,False,False
+rare-trigger,2^-32 (a&0xFFFFFFFF)==0x97048B6D,True,NOT_EQUIVALENT,True,0.11,False,False
+equivalent,rotl respelled,False,PROVED,False,0.05,False,False
+equivalent,C_K as sum,False,PROVED,False,0.05,False,False
+equivalent,C_M as sum,False,PROVED,False,0.05,False,False
+equivalent,s^t as (s|t)-(s&t),False,PROVED,False,0.04,False,False
