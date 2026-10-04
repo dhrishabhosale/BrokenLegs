@@ -20,5 +20,14 @@ gcc $HF -O0 -DTARGET_SRC='"param.c"' -DROUNDS=8 -DLEVEL=2 src/strip_wrap.c -o bu
 gcc $HF -O0 -DTARGET_SRC='"neg_lookalike.c"' src/strip_wrap.c -o build/stripped_lookalike.so
 strip --strip-all build/stripped_*.so
 
+# signature-scope test libraries (wider function signatures)
+mkdir -p build/sig
+gcc $CF -O0 src/sig_u64.c -o build/sig/u64_ref.so;     gcc $CF -O3 src/sig_u64.c -o build/sig/u64_O3.so
+gcc $CF -O0 -DK2=0x94D049BB133111ECull src/sig_u64.c -o build/sig/u64_lookalike.so
+gcc $CF -O0 src/sig_mixed.c -o build/sig/mixed_ref.so; gcc $CF -O3 src/sig_mixed.c -o build/sig/mixed_O3.so
+gcc $CF -O0 -DSH=6 src/sig_mixed.c -o build/sig/mixed_lookalike.so
+gcc $CF -O0 src/sig_buf.c -o build/sig/buf_ref.so;     gcc $CF -O3 src/sig_buf.c -o build/sig/buf_O3.so
+gcc $CF -O0 -DREFACTOR -DSKIP=1 src/sig_buf.c -o build/sig/buf_skip.so
+
 gcc -O2 src/fuzz.c -o build/fuzz -ldl                            # fast C differential fuzzer
 echo "built:"; ls build/*.so build/fuzz
