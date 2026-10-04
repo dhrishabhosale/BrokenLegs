@@ -49,7 +49,7 @@ python3 tests_sig.py                       # wider signatures: u64 args, mixed w
 
 ### Scaling
 
-![scaling](./results/scaling.csv)
+![scaling](./results/scaling.png)
 
 Plain / flattened / flattened+opaque: PROVED at every size from 1 to 32 rounds, <= 1.5s.
 MBA is the wall: 1 layer proves only at 1 round; 2 layers never proves (not even at 1 round); at 32 rounds x 2 layers the query exceeds the size budget and is skipped.
