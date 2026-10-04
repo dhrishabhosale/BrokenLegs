@@ -1,4 +1,4 @@
-# Lineage — 24h demo (+ extensions)
+# Lineage
 
 > "Obfuscation hides how code looks. It can't hide what code computes. We prove the latter."
 
