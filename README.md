@@ -1,4 +1,4 @@
-# Lineage
+# Lineage — 24h demo (+ extensions)
 
 > "Obfuscation hides how code looks. It can't hide what code computes. We prove the latter."
 
@@ -11,6 +11,7 @@ pip install -U angr z3-solver matplotlib   # use angr >= 10 (see note below); x8
 python3 lineage.py                         # main demo table            (~1.5 min)
 python3 mutation_sweep.py                  # 67 mutants, fuzz vs proof  (~1.5 min) -> results/sweep.*
 python3 scaling.py --rerun                 # rounds x obfuscation grid  (~5 min)   -> results/scaling.*
+python3 tests_sig.py                       # wider signatures: u64 args, mixed widths, 16-byte buffer (~1 min)
 ```
 (`python3 scaling.py` without `--rerun` just re-plots the saved CSV.) Timings are from a 1-CPU sandbox.
 
@@ -38,27 +39,27 @@ python3 scaling.py --rerun                 # rounds x obfuscation grid  (~5 min)
 | N2) unrelated hash | 44% | NOT_EQUIVALENT + counterexample |
 | N3) stripped lookalike | 100% | NOT_FOUND |
 
-### Mutation sweep 
+### Mutation sweep
 
-![scaling](./results/sweep_detection.png)
+![sweep-detection](./results/sweep_detection.png)
 
 63 truly-different mutants: **Lineage 63/63**, fuzz-300k 42/63, fuzz-50M 52/63.
 42 rare-trigger "backdoor" mutants (differ on 2^-k of inputs): Lineage 42/42, fuzz-300k 21/42, fuzz-50M 31/42; every 2^-32 backdoor missed by both fuzzers.
 4 semantics-preserving rewrites (incl. an MBA identity): 0 false alarms, all PROVED.
 
-### Scaling 
+### Scaling
 
-![scaling](./results/scaling.png)
+![scaling](./results/scaling.csv)
 
 Plain / flattened / flattened+opaque: PROVED at every size from 1 to 32 rounds, <= 1.5s.
 MBA is the wall: 1 layer proves only at 1 round; 2 layers never proves (not even at 1 round); at 32 rounds x 2 layers the query exceeds the size budget and is skipped.
 
-## limitations
+## Limitations
 - **Baseline is a stand-in**, not real BinDiff/Diaphora. **Obfuscation is hand-written**, not Tigress/ollvm (MBA rewrites are my own identities).
 - **MBA defeats the solver** once it is composed across rounds; this is the main open problem (idea: per-round cut points / MBA simplification).
 - Budgets are tunable and results depend on them: 512 paths, 20-30s Z3 timeout, 1200 shared-DAG nodes (Z3 can abort on memory beyond that).
 - TESTED is statistical. The sweep shows rare-trigger differences slip past even 50M samples; only a proof rules them out.
-- Target is narrow: fixed rounds, register-only (u32,u32)->u32 inputs, same architecture (x86-64). No buffers/memory, no loop summarization, no VM-based protectors.
+- Scope: x86-64, 1-6 integer/pointer register arguments (u8/u16/u32/u64), integer return up to 64 bits, plus fixed-length byte buffers (read-only; the function's side effects on memory are not compared). Not supported: floats, structs, variable-length buffers, stack-passed arguments, calls into other code that isn't summarised, loop summarization, VM-based protectors.
 - Stripped discovery assumes the reference's signature is known (the owner knows their own function); the emulation probe is a sound *rejection* filter, not evidence of equivalence.
 - Not done: cross-architecture (ARM) builds, whole-binary scoring.
 
@@ -68,5 +69,18 @@ MBA is the wall: 1 layer proves only at 1 round; 2 layers never proves (not even
 pip install flask
 python3 webapp.py
 ```
-Run Build, Demo table, Mutation sweep and Scaling grid from the browser. Jobs are detached processes that keep running if you close the tab or restart the server; logs are in `jobs/`. One job runs at a time so timings stay meaningful. It binds to localhost and only runs the four fixed commands.
+1. **Compare two files**: upload a reference and a candidate (`.so` libraries, or `.c` sources that are compiled for you), optionally give symbol names or function addresses, or tick *stripped* to auto-discover the function. Give the signature in a mini language (below); default `u32,u32->u32`.
+2. **Tests**: pick a prepared variant from `build/` (run *Build binaries* first) and compare it against the reference.
+3. **Batch experiments**: demo table, mutation sweep, scaling grid as detached background jobs (one at a time).
 
+**Report:** *Generate report* writes a short plain-language report. With `export ANTHROPIC_API_KEY=...` (optional `LINEAGE_MODEL`) it is written by Claude from the JSON result summary only (files are never sent); without a key a deterministic template is used. The report is instructed not to claim theft or legal conclusions.
+Uploaded code is compiled and executed locally to confirm results: only use files you trust. The server binds to localhost.
+
+## Function signatures
+A signature is a comma-separated argument list, `->`, and a return type, e.g.
+`u32,u32->u32` (default) | `u64,u64->u64` | `u8,u16,u32->u16` | `buf16,len16->u32`.
+`u8..u64` are integers (signed types are compared as bit patterns), `bufN` is a pointer to N symbolic bytes, `lenN` is a constant `size_t` N
+(so `buf16,len16` means `f(const uint8_t *p, size_t n)` called with n = 16). Both functions are compared under the same signature.
+In Python: `L.prove(ref, cand, sig=L.Sig("buf16,len16->u32"))`. `python3 tests_sig.py` runs ten cases (u64, mixed widths, buffer hash, including a
+candidate that ignores the last byte); the web app's Tests dropdown includes six of them (build first).
+Observed: counterexample search on 64-bit multiplications and buffer hashes can be slow for Z3 (14-20 s); when it times out the fuzz fallback usually still finds the difference.
