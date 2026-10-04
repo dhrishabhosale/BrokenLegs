@@ -38,12 +38,18 @@ python3 scaling.py --rerun                 # rounds x obfuscation grid  (~5 min)
 | N2) unrelated hash | 44% | NOT_EQUIVALENT + counterexample |
 | N3) stripped lookalike | 100% | NOT_FOUND |
 
-### Mutation sweep (`results/sweep_detection.png`)
+### Mutation sweep 
+
+![scaling](./results/sweep_detection.png)
+
 63 truly-different mutants: **Lineage 63/63**, fuzz-300k 42/63, fuzz-50M 52/63.
 42 rare-trigger "backdoor" mutants (differ on 2^-k of inputs): Lineage 42/42, fuzz-300k 21/42, fuzz-50M 31/42; every 2^-32 backdoor missed by both fuzzers.
 4 semantics-preserving rewrites (incl. an MBA identity): 0 false alarms, all PROVED.
 
-### Scaling (`results/scaling.png`)
+### Scaling 
+
+![scaling](./results/scaling.png)
+
 Plain / flattened / flattened+opaque: PROVED at every size from 1 to 32 rounds, <= 1.5s.
 MBA is the wall: 1 layer proves only at 1 round; 2 layers never proves (not even at 1 round); at 32 rounds x 2 layers the query exceeds the size budget and is skipped.
 
